@@ -136,3 +136,11 @@ set_string_elt <- function(vector, index, value) {
 set_vector_elt <- function(vector, index, value) {
   .Call("set_vector_elt", vector, as.integer(index) - 1L, value, PACKAGE = "dplyr")
 }
+
+recycle <- function(list) {
+  .Call("recycle", list, PACKAGE = "dplyr")
+}
+
+fill_lazy <- function(output, dots, dots_nm) {
+  .Call("fill_lazy", output, dots, dots_nm, PACKAGE = "dplyr")
+}
