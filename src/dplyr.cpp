@@ -1102,9 +1102,9 @@ dplyr::BoolResult equal_data_frame(DataFrame x, DataFrame y, bool ignore_col_ord
 // [[Rcpp::export]]
 dplyr::BoolResult all_equal_data_frame( List args, Environment env ){
     int n = args.size() ;
-    DataFrame x0 = Rf_eval( args[0], env) ;
+    DataFrame x0 = Rcpp_eval( args[0], env) ;
     for( int i=1; i<n; i++){
-        BoolResult test = equal_data_frame( x0, Rf_eval( args[i], env ) ) ;
+        BoolResult test = equal_data_frame( x0, Rcpp_eval( args[i], env ) ) ;
         if( !test ) return test ;
     }
     return yes() ;
@@ -1751,10 +1751,10 @@ IntegerVector order_impl( List args, Environment env ){
     for(int i=0; i<nargs; i++){
         tmp = args[i] ;
         if( TYPEOF(tmp) == LANGSXP && CAR(tmp) == Rf_install("desc") ){
-            variables[i] = Rf_eval( CAR(CDR(tmp) ), env ) ;
+            variables[i] = Rcpp_eval( CAR(CDR(tmp) ), env ) ;
             ascending[i] = false ;
         } else{
-            variables[i] = Rf_eval( tmp, env );
+            variables[i] = Rcpp_eval( tmp, env );
             ascending[i] = true ;
         }
     }

@@ -26,7 +26,7 @@ namespace dplyr {
 
         // just call R to deal with other cases
         // we could call R_data_class directly but we might get a "this is not part of the api"
-        klass = Rf_eval( Rf_lang2( Rf_install( "class" ), x), R_GlobalEnv ) ;
+        klass = Rcpp_eval( Rf_lang2( Rf_install( "class" ), x), R_GlobalEnv ) ;
         return CHAR(STRING_ELT(klass,0)) ;
     }
 

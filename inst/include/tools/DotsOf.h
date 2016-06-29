@@ -38,7 +38,7 @@ namespace Rcpp {
               }
               SEXP x = PRVALUE(prom) ;
               if( x == R_UnboundValue ){
-                x = PROTECT(Rf_eval(PRCODE(prom), PRENV(prom))) ;
+                x = PROTECT(Rcpp_eval(PRCODE(prom), PRENV(prom))) ;
                 np++ ;
               }
               if( is<T>(x) ){
@@ -89,7 +89,7 @@ namespace Rcpp {
               }
               SEXP x = PRVALUE(prom) ;
               if( x == R_UnboundValue ){
-                x = PROTECT(Rf_eval(PRCODE(prom), PRENV(prom))) ;
+                x = PROTECT(Rcpp_eval(PRCODE(prom), PRENV(prom))) ;
                 np++ ;
               }
               data.push_back(x) ;
