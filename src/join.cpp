@@ -284,7 +284,7 @@ namespace dplyr{
         }
         p_left = CDR(p_left) ;
       }
-      RObject test = Language( "all.equal", list_left, list_right ).fast_eval() ;
+      RObject test = Language( "all.equal", list_left, list_right ).eval() ;
       if( !is<bool>(test) || !as<bool>(test) ){
         stop("attributes are different") ;
       }

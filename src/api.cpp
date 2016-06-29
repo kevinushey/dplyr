@@ -47,7 +47,7 @@ namespace dplyr{
     }
 
     inline String comma_collapse( SEXP names ){
-      return Language( "paste", names, _["collapse"] = ", " ).fast_eval() ;
+      return Language( "paste", names, _["collapse"] = ", " ).eval() ;
     }
 
     DataFrameJoinVisitors::DataFrameJoinVisitors(const Rcpp::DataFrame& left_, const Rcpp::DataFrame& right_, Rcpp::CharacterVector names_left, Rcpp::CharacterVector names_right, bool warn_ ) :
@@ -301,7 +301,7 @@ namespace dplyr{
         // retrieve unique strings from the set
         int n_uniques = set.size() ;
         CharacterVector uniques( set.begin(), set.end() ) ;
-        CharacterVector s_uniques = Language( "sort", uniques ).fast_eval() ;
+        CharacterVector s_uniques = Language( "sort", uniques ).eval() ;
 
         // order the uniques with a callback to R
         IntegerVector o = r_match(uniques, s_uniques ) ;
@@ -339,7 +339,7 @@ namespace dplyr{
         CharacterVector::iterator it = big.begin() ;
         std::copy( left.begin(), left.end(), it ) ;
         std::copy( right.begin(), right.end(), it + nleft ) ;
-        return Language( "unique", big ).fast_eval() ;
+        return Language( "unique", big ).eval() ;
     }
 
 }
